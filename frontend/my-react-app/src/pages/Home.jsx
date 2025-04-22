@@ -4,6 +4,7 @@ import { Card, CardContent, Typography, Grid } from '@mui/material';
 import Section from '../components/Section';
 import "../style.css";
 
+const PORT = 8080;
 const Home = () => {
   const [products, setProducts] = useState([]);
 
@@ -13,7 +14,7 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/products');
+      const response = await axios.get(`http://localhost:${PORT}/products`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);

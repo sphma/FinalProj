@@ -7,7 +7,7 @@ const { createClient } = require('@supabase/supabase-js');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 
 const supabase = createClient(
   'https://facwuxporhnlptwaiftk.supabase.co',
@@ -15,7 +15,11 @@ const supabase = createClient(
 );
 
 app.use(cors({
-  origin: 'http://localhost:5173' // or use '*' for all origins during dev
+  origin: [
+    'http://localhost:5173',                   // for local development
+    'https://final-proj-5san.vercel.app/',        // your actual deployed frontend domain
+    'https://opashshop.azurewebsites.net'      // optionally, allow same-origin if needed
+  ]
 }));
 app.use(express.json());
 
