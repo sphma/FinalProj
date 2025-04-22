@@ -17,7 +17,6 @@ const supabase = createClient(
 app.use(cors({
   origin: [
     'http://localhost:5173',                   // for local development
-    'https://final-proj-5san.vercel.app/',        // your actual deployed frontend domain
     'https://opashshop.azurewebsites.net'      // optionally, allow same-origin if needed
   ]
 }));
