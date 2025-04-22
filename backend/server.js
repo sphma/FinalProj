@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 const supabase = createClient(
-  'https://facwuxporhnlptwaiftk.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhY3d1eHBvcmhubHB0d2FpZnRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1MTkxMDksImV4cCI6MjA2MDA5NTEwOX0.togZFTkihQTCbGYTT0OWWM_4QJGKOmYkn9a8I3HziT8'
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
 );
 
 app.use(cors({
