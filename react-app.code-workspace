@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../react-app"
+		},
+		{
+			"path": "../shopping-cart-vite"
+		},
+		{
+			"name": "lab9pups",
+			"path": "../clones/lab9pups"
+		},
+		{
+			"path": "../lab9"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"postman.settings.dotenv-detection-notification-visibility": false
+	}
+}

@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/c594ac97-2fc5-4677-aa90-f95581494334/resourceGroups/FullStack25/providers/Microsoft.Web/sites/OpashShop",
+    "appService.deploySubpath": "."
+}
