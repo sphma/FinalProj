@@ -63,6 +63,11 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
+      - name: Install backend dependencies
+        run: |
+          cd backend &&
+          npm install
       
       - name: Login to Azure
         uses: azure/login@v2
