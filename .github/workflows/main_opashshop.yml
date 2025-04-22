@@ -23,11 +23,15 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
+      - name: npm install
         run: 
           cd frontend/my-react-app
           npm install
-          npm run build 
+
+      - name: Build React app
+        run: |
+          cd frontend/my-react-app
+          npm run build
    
 
       - name: Zip artifact for deployment
