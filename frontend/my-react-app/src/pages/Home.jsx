@@ -14,7 +14,7 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`http://localhost:${PORT}/products`);
+      const response = await axios.get('https://opashshop.azurewebsites.net/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
