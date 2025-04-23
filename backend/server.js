@@ -49,6 +49,18 @@ app.post('/customers', async (req, res) => {
   res.status(201).json(data);
 });
 
+app.get('/orders', async (req, res) => {
+  const { data, error } = await supabase.from('orders').select('*');
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(200).json(data);
+});
+
+app.get('/shop', async (req, res) => {
+  const { data, error } = await supabase.from('shop').select('*');
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(200).json(data);
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
