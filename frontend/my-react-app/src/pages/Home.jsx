@@ -14,7 +14,7 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://opashshop.azurewebsites.net/products');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
