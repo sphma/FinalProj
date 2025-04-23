@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from "@asgardeo/auth-react";  // Keep this if you want authentication
-import { config } from "./config/asgardeoConfig";
+import { config } from "./asgardeoConfig";
 import Home from "./pages/Home"; 
 import ProductManagement from "./pages/ProductManagement";
 import CustomerManagement from "./pages/CustomerManagement";
