@@ -6,7 +6,6 @@ const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 const { sendEmail } = require('./sendgridClient');
 
-
 dotenv.config();
 
 const app = express();

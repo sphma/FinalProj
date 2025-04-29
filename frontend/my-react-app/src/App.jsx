@@ -6,6 +6,7 @@ import { config } from "../asgardeoConfig";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ChatWindow from './components/ChatWindow';
 
 // pages
 import Home from "./pages/Home"; 
@@ -51,6 +52,7 @@ const App = () => {
               } 
             />
           </Routes>
+          <Chatbot />
           <Footer />
         </CartProvider>
   );
