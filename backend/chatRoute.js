@@ -1,34 +1,31 @@
 const express = require('express');
-const axios = require('axios');
-const dotenv = require('dotenv');
-
-dotenv.config();
 const router = express.Router();
+const axios = require('axios');
+require('dotenv').config();
 
 router.post('/', async (req, res) => {
   const { messages } = req.body;
 
   try {
     const response = await axios.post(
-      process.env.DEEPSEEK_API_URL,
+      process.env.DEEPSEEK_API_URL || 'https://api.deepseek.com/v1/chat/completions',
       {
-        model: process.env.DEEPSEEK_MODEL,
+        model: 'deepseek-chat', // or another model if specified
         messages,
-        temperature: 0.7,
-        max_tokens: 1000,
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+          'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
           'Content-Type': 'application/json',
         },
       }
     );
 
-    res.json(response.data.choices[0].message);
+    const reply = response.data?.choices?.[0]?.message?.content || "No response";
+    res.json({ content: reply });
   } catch (err) {
-    console.error('DeepSeek error:', err.response?.data || err.message);
-    res.status(500).json({ error: 'Failed to get AI response from DeepSeek.' });
+    console.error('DeepSeek API error:', err.response?.data || err.message);
+    res.status(500).json({ error: 'Failed to get response from DeepSeek API' });
   }
 });
 
