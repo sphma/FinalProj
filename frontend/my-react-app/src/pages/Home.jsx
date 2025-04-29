@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Card, CardContent, CardMedia, Typography, Grid, Button } from '@mui/material';
 import Section from '../components/Section';
 import CartAdded from '../components/CartAdded';
+import ChatWindow from '../components/ChatWindow';
 import { useCart } from '../context/CartContext';
 import "../style.css";
 
@@ -93,11 +94,16 @@ const Home = () => {
           </Grid>
         )}
       </Grid>
+
       <CartAdded
         open={snackbarOpen}
         handleClose={handleSnackbarClose}
         message="Product added to cart!"
       />
+
+      <div className="chat-window-wrapper">
+        <ChatWindow />
+      </div>
     </Section>
   );
 };

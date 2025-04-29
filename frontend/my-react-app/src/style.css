@@ -106,6 +106,13 @@ body {
        border: 1px solid #ddd;
        border-radius: 5px;
    }
+
+   .chat-window-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
    
     /* Footer Styling */
     footer {
