@@ -21,7 +21,10 @@ app.use(cors({
     'http://localhost:5173',                   // for local development
     'https://opashshop.azurewebsites.net',      // optionally, allow same-origin if needed
     'https://final-proj-5san.vercel.app'
-  ]
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json());
 app.use('/chat', chatRoute);

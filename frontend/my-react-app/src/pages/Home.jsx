@@ -100,6 +100,8 @@ const Home = () => {
         handleClose={handleSnackbarClose}
         message="Product added to cart!"
       />
+
+      <ChatWindow />
     </Section>
   );
 };
