@@ -8,18 +8,22 @@ const ChatWindow = () => {
   const sendMessage = async () => {
     const userMessage = { role: "user", content: input };
     const newMessages = [...messages, userMessage];
-
+  
     setMessages(newMessages);
     setInput('');
-
+  
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/chat`, { messages: newMessages });
-      const reply = response.data.reply;
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/chat`, {
+        messages: newMessages
+      });
+  
+      const reply = response.data?.content || response.data?.choices?.[0]?.message?.content || "Sorry, no response.";
       setMessages([...newMessages, { role: "assistant", content: reply }]);
     } catch (err) {
       console.error('Error:', err);
     }
   };
+  
 
   return (
     <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
