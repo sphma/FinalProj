@@ -236,7 +236,7 @@ const Header = () => {
         <nav style={{ display: 'flex' }}>
           {!state.isAuthenticated && (
             <>
-              <a href="/" className="header-link">Home</a>
+              <a href="/" className="header-link">Products</a>
               <a href="/cart" className="header-link">
                 Cart
                 {cartCount > 0 && (
