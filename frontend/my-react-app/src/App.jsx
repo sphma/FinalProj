@@ -52,7 +52,7 @@ const App = () => {
               } 
             />
           </Routes>
-          <Chatbot />
+          <ChatWindow />
           <Footer />
         </CartProvider>
   );
