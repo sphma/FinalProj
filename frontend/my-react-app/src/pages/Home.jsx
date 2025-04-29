@@ -44,6 +44,7 @@ const Home = () => {
   const handleSnackbarClose = () => setSnackbarOpen(false);
 
   return (
+    <>
     <Section title="Featured Products" subtitle="Check out our latest products!">
       <Grid container spacing={4} justifyContent="flex-start">
         {products.length > 0 ? (
@@ -51,7 +52,7 @@ const Home = () => {
             .sort((a, b) => a.id - b.id)
             .map((product) => (
               <Grid item key={product.id}>
-                <Card sx={{ height: '100%', width:338, display: 'flex', flexDirection: 'column' }}>
+                <Card sx={{ height: '100%', width: 338, display: 'flex', flexDirection: 'column' }}>
                   {product.ImageURL && (
                     <CardMedia
                       component="img"
@@ -59,12 +60,11 @@ const Home = () => {
                         height: 325,
                         objectFit: "cover",
                         mx: "auto",
-                        p:0,
-                        m:0   
+                        p: 0,
+                        m: 0
                       }}
                       image={product.ImageURL}
-                      alt={product.Name}
-                    />
+                      alt={product.Name} />
                   )}
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography variant="h6" gutterBottom>
@@ -98,11 +98,10 @@ const Home = () => {
       <CartAdded
         open={snackbarOpen}
         handleClose={handleSnackbarClose}
-        message="Product added to cart!"
-      />
-
-      <ChatWindow />
+        message="Product added to cart!" />
     </Section>
+    {/* <ChatWindow /> */}
+    </>
   );
 };
 
