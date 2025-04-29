@@ -118,8 +118,7 @@ const Orders = () => {
                       <ul>
                         {(orderProducts[order.id] || []).map((item, idx) => (
                           <li key={idx}>
-                            {item.products?.Name || `Product ID: ${item.product_id}`}<br />
-                            Qty: {item.quantity}   Price: ${item.price}
+                            {item.quantity}x {item.products?.Name || `Product ID: ${item.product_id}`} @ Price: ${item.price}
                           </li>
                         ))}
                       </ul>
