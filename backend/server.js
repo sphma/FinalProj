@@ -3,25 +3,23 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
+const { sendEmail } = require('./sendgridClient');
 
 dotenv.config();
 
 const app = express();
-// const PORT = process.env.PORT || 8080;
-const PORT = 3000;
+const PORT = process.env.PORT || 8080;
 
 const supabase = createClient(
-  // process.env.SUPABASE_URL,
-  // process.env.SUPABASE_KEY
-  'https://facwuxporhnlptwaiftk.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhY3d1eHBvcmhubHB0d2FpZnRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1MTkxMDksImV4cCI6MjA2MDA5NTEwOX0.togZFTkihQTCbGYTT0OWWM_4QJGKOmYkn9a8I3HziT8'
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
 );
 
 app.use(cors({
   origin: [
-    'http://localhost:5173'                   // for local development
-    // 'https://opashshop.azurewebsites.net',      // optionally, allow same-origin if needed
-    // 'https://final-proj-5san.vercel.app'
+    'http://localhost:5173',                   // for local development
+    'https://opashshop.azurewebsites.net',      // optionally, allow same-origin if needed
+    'https://final-proj-5san.vercel.app'
   ]
 }));
 app.use(express.json());
@@ -96,16 +94,8 @@ app.patch('/orders/:id', async (req, res) => {
 
 
 app.post('/orders', async (req, res) => {
-  const {
-    name,
-    email,
-    phone,
-    address,
-    items, // array of { product_id, quantity, price }
-    order_amt,
-    order_date,
-    status
-  } = req.body;
+  const {name, email, phone, address, items, // array of { product_id, quantity, price }
+    order_amt, order_date, status} = req.body;
 
   // 1. Insert or find customer
   let customer_id;
@@ -163,6 +153,15 @@ app.post('/orders', async (req, res) => {
   if (poError) return res.status(500).json({ error: poError.message });
 
   res.status(201).json({ order_id });
+
+  const productDetails = items.map(item => ({
+    name: item.name, // Make sure your frontend sends 'name' for each item!
+    quantity: item.quantity,
+    price: item.price
+  }));
+  
+  await sendEmail(email, productDetails, order_amt);
+  console.log('Email sent to:', email);
 });
 
 app.get('/shop', async (req, res) => {

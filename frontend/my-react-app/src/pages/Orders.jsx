@@ -26,7 +26,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/orders');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/orders`);
       setOrders(response.data);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -35,7 +35,7 @@ const Orders = () => {
 
   const fetchCustomers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/customers');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/customers`);
       setCustomers(response.data);
     } catch (error) {
       console.error('Error fetching customers:', error);
@@ -44,7 +44,7 @@ const Orders = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/products');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -53,7 +53,7 @@ const Orders = () => {
 
   const fetchOrderProducts = async (orderId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/orders/${orderId}/products`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/orders/${orderId}/products`);
       setOrderProducts(prev => ({ ...prev, [orderId]: response.data }));
     } catch (error) {
       console.error('Error fetching order products:', error);
@@ -72,7 +72,7 @@ const Orders = () => {
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      await axios.patch(`http://localhost:3000/orders/${orderId}`, { status: newStatus });
+      await axios.patch(`${import.meta.env.VITE_API_URL}/orders/${orderId}`, { status: newStatus });
       fetchOrders();
     } catch (error) {
       console.error('Error updating order status:', error);

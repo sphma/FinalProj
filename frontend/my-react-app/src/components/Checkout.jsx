@@ -20,13 +20,14 @@ const CheckoutDialog = ({ open, handleClose }) => {
   const handleConfirm = async () => {
     if (!cart || cart.length === 0) return; // <-- Check cart, not selectedProduct
     try {
-      await axios.post('http://localhost:3000/orders', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/orders`, {
         name: form.name,
         email: form.email,
         phone: form.phone,
         address: form.address,
         items: cart.map(item => ({
           product_id: item.id,
+          name: item.Name,
           quantity: item.quantity || 1,
           price: item.Price
         })),
@@ -63,7 +64,8 @@ const CheckoutDialog = ({ open, handleClose }) => {
                 Thank you for your order!
               </Typography>
               <Typography>
-                Your order has been placed successfully.
+                Your order has been placed successfully. <br />
+                A confirmation email will be sent to {form.email}!
               </Typography>
             </DialogContent>
             <DialogActions>
