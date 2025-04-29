@@ -1,7 +1,7 @@
 // server.js (CommonJS)
 const express = require('express');
 const dotenv = require('dotenv');
-// const chatRoute = require('./chat');
+const chatRoute = require('./chatRoute');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 const { sendEmail } = require('./sendgridClient');
@@ -24,7 +24,7 @@ app.use(cors({
   ]
 }));
 app.use(express.json());
-//app.use('/chat', chatRoute);
+app.use('/chat', chatRoute);
 
 
 
