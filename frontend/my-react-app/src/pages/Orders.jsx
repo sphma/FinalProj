@@ -79,7 +79,7 @@ const Orders = () => {
     }
   };
 
-    // Sort orders by order_date in ascending order
+  // Sort orders by order_date in ascending order
   const sortedOrders = [...orders].sort(
     (a, b) => new Date(a.order_date) - new Date(b.order_date)
   );
@@ -87,6 +87,23 @@ const Orders = () => {
   // Split orders by status
   const notShippedOrders = sortedOrders.filter(order => order.status !== "shipped");
   const shippedOrders = sortedOrders.filter(order => order.status === "shipped");
+
+  // Function to group products by product_id and sum quantities
+  const groupProducts = (orderId) => {
+    const grouped = (orderProducts[orderId] || []).reduce((acc, item) => {
+      const existingProduct = acc.find(product => product.product_id === item.product_id);
+
+      if (existingProduct) {
+        existingProduct.quantity += item.quantity; // Sum quantities
+      } else {
+        acc.push({ ...item, quantity: item.quantity }); // Add new product with its quantity
+      }
+
+      return acc;
+    }, []);
+
+    return grouped;
+  };
 
   return (
     <Section title="Orders">
@@ -115,13 +132,13 @@ const Orders = () => {
                   </Typography>
                   <Typography variant="body1">
                     <strong>Products:</strong>
-                      <ul>
-                        {(orderProducts[order.id] || []).map((item, idx) => (
-                          <li key={idx}>
-                            {item.quantity}x {item.products?.Name || `Product ID: ${item.product_id}`} @ Price: ${item.price}
-                          </li>
-                        ))}
-                      </ul>
+                    <ul>
+                      {groupProducts(order.id).map((item, idx) => (
+                        <li key={idx}>
+                          {item.quantity}x {item.products?.Name || `Product ID: ${item.product_id}`} @ Price: ${item.price}
+                        </li>
+                      ))}
+                    </ul>
                   </Typography>
                   <Typography variant="body1">
                     <strong>Order Date:</strong> {new Date(order.order_date).toLocaleString()}
@@ -131,7 +148,7 @@ const Orders = () => {
                   </Typography>
                   <Typography variant="h6" sx={{ marginTop: 2 }}>
                     <strong>Total Items:</strong>{" "}
-                    {(orderProducts[order.id] || []).reduce((sum, item) => sum + Number(item.quantity || 0), 0)}
+                    {groupProducts(order.id).reduce((sum, item) => sum + item.quantity, 0)}
                   </Typography>
                   <Typography variant="h6">
                     <strong>Total Amount:</strong> ${order.order_amt}
