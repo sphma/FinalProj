@@ -12,15 +12,21 @@ const ChatWindow = () => {
     setMessages(newMessages);
     setInput('');
   
+    console.log('Sending to:', `${import.meta.env.VITE_API_URL}/chat`);
+    console.log('Payload:', newMessages);
+  
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/chat`, {
         messages: newMessages
       });
   
+      console.log('Response:', response.data);
+  
       const reply = response.data?.content || response.data?.choices?.[0]?.message?.content || "Sorry, no response.";
       setMessages([...newMessages, { role: "assistant", content: reply }]);
     } catch (err) {
-      console.error('Error:', err);
+      console.error('Error from /chat:', err);
+      alert("Chatbot failed. See console for details.");
     }
   };
   
