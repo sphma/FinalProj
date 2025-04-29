@@ -4,7 +4,7 @@ body {
     /* border: solid; */
     margin: 0;
     padding: 0;
-    background-color: lightgrey;
+    background-color: #ffeace;
     color: #333;
    }
    
@@ -22,11 +22,46 @@ body {
        margin: 0px 0px 20px;
        font-size: 40px;
     }
-   
-   #txt-red {
-       color:red;
-   }
-   
+
+    .header-link {
+        color: white;
+        font-weight: bold;
+        margin: 0 15px;
+        cursor: pointer;
+        position: relative;
+        text-decoration: none;
+        transition: text-decoration 0.2s;
+      }
+      
+    .header-link:hover {
+        text-decoration: underline;
+        color: white;
+    }
+
+   .cart-badge {
+    background: #408dd9;           
+    color: white;
+    border-radius: 50%;
+    padding: 1px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: -8px;
+    right: -25px;                  
+    min-width: 24px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .cart-card {
+    min-width: 350px;
+    min-height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    width: 80%;
+    padding: 24px; 
+  }
    
    nav ul li {
        display: inline;
@@ -44,10 +79,10 @@ body {
    } 
    
    
-   
    /* Section Styling */
    section {
        padding: 30px;
+       min-height: 400px;
        background-color: #ffffff; /* White */
        margin: 30px auto;
        border-radius: 10px;
@@ -55,32 +90,6 @@ body {
        width: 80%;
    }
    
-   
-   /* Table Styling */
-   table {
-       width: 100%;
-       border-collapse: collapse;
-       margin: 20px -10px;
-   }
-   
-   table th, table td {
-       border: 1px solid #ddd;
-       padding: 10px;
-       text-align: left;
-   }
-   
-   table th {
-       background-color: #cc5500; /* Burnt Orange */
-       color: #ffffff; /* White */
-   }
-   
-   table tr:nth-child(even) {
-       background-color: #f2f2f2; /* Light Khaki for contrast */
-   }
-   
-   table tr:hover {
-       background-color: #d3d3d3;
-   }
    
    /* Form Styling */
    form label {
@@ -98,16 +107,6 @@ body {
        border-radius: 5px;
    }
    
-   /* form input[type="submit"] {
-    
-   }
-   
-   form input[type="submit"]:hover {
-       
-   } */
-   
-   
-   
     /* Footer Styling */
     footer {
     background-color: #F08700;
@@ -123,7 +122,7 @@ body {
        margin: 10;
    }
    
-   /* Additional Styling for Image Gallery in index.html */
+   /* Additional Styling */
    img {
        border-radius: 10px;
        margin: 20px;
@@ -135,7 +134,7 @@ body {
    }
    
    h3 {
-       color: #cc5500; /* Burnt Orange */
+       color: #cc5500; 
    }
    
    hr {

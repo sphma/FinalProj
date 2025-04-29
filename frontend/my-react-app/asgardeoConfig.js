@@ -3,6 +3,6 @@ export const config = {
     signOutRedirectURL: import.meta.env.VITE_SIGNOUT_URL,
     clientID: "7mSV1WJWFmPbtoAofdMaHPRT420a",
     baseUrl: "https://api.asgardeo.io/t/smafs",
-    scope: ["openid", "profile"]
+    scope: ["openid", "profile", "email", "roles", "application_roles"]
   };
   
