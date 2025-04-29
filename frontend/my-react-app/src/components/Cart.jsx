@@ -3,7 +3,7 @@ import { Card, CardContent, Typography, Button, List, ListItem, ListItemText, Bo
 
 const Cart = ({ cart, onCheckout, onRemove }) => {
   // Calculate total amount
-  const total = cart.reduce((sum, item) => sum + Number(item.Price || 0), 0);
+  const total = cart.reduce((sum, item) => sum + Number(item.Price) * item.quantity, 0);
 
   return (
     <Card className="cart-card">
@@ -26,12 +26,13 @@ const Cart = ({ cart, onCheckout, onRemove }) => {
                   }
                 >
                   <ListItemText
-                    primary={item.Name}
-                    secondary={`$${item.Price}`}
+                    primary={`${item.quantity}x ${item.Name}`}
+                    secondary={`@ Price: $${item.Price} each | Subtotal: $${(item.Price * item.quantity).toFixed(2)}`}
                   />
                 </ListItem>
               ))}
             </List>
+
             <Box mt={2} mb={1}>
               <Typography variant="subtitle1" fontWeight="bold">
                 Total: ${total.toFixed(2)}
