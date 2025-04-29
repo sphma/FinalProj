@@ -23,7 +23,8 @@ const ChatWindow = () => {
 
   return (
     <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
-      <h2>Chat with OpashiBot 🤖</h2>
+      <h1>Need Help?</h1>
+      <h2>Chat with OpashiBot</h2>
       <div style={{ border: '1px solid #ccc', padding: 10, height: 300, overflowY: 'auto' }}>
         {messages.map((msg, idx) => (
           <div key={idx} style={{ textAlign: msg.role === 'user' ? 'right' : 'left' }}>
@@ -34,9 +35,18 @@ const ChatWindow = () => {
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Type your message..."
-        style={{ width: '80%' }}
+        placeholder="Type your message here..."
+        style={{
+          width: '80%',
+          backgroundColor: 'white',
+          height: '48px',
+          padding: '10px', 
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          fontSize: '16px'
+        }}
       />
+      <br />
       <button onClick={sendMessage} style={{ width: '18%' }}>Send</button>
     </div>
   );

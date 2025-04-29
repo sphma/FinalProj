@@ -100,10 +100,6 @@ const Home = () => {
         handleClose={handleSnackbarClose}
         message="Product added to cart!"
       />
-
-      <div className="chat-window-wrapper">
-        <ChatWindow />
-      </div>
     </Section>
   );
 };
