@@ -115,13 +115,15 @@ const Orders = () => {
                   </Typography>
                   <Typography variant="body1">
                     <strong>Products:</strong>
-                    <ul>
-                      {(orderProducts[order.id] || []).map((item, idx) => (
-                        <li key={idx}>
-                            {item.products?.Name || `Product ID: ${item.product_id}`} (Qty: {item.quantity}, Price: ${item.price})
-                        </li>
-                      ))}
-                    </ul>
+                      <ul>
+                        {(orderProducts[order.id] || []).map((item, idx) => (
+                          <li key={idx}>
+                            {item.products?.Name || `Product ID: ${item.product_id}`}<br />
+                            Qty: {item.quantity}<br />
+                            Price: ${item.price}
+                          </li>
+                        ))}
+                      </ul>
                   </Typography>
                   <Typography variant="body1">
                     <strong>Order Date:</strong> {new Date(order.order_date).toLocaleString()}
