@@ -105,7 +105,16 @@ const Home = () => {
                         <Button
                           variant="outlined"
                           color="error"
-                          sx={{ mt: 2 }}
+                          sx={{
+                            mt: 2,
+                            transition: "all 0.3s ease",
+                            '&:hover': {
+                              variant: 'contained', 
+                              backgroundColor: 'error.main',
+                              color: 'white',
+                              borderColor: 'error.main',
+                            }
+                          }}
                           onClick={() => handleDelete(product.id)}
                         >
                           Delete Listing
