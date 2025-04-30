@@ -3,28 +3,29 @@ const router = express.Router();
 const axios = require('axios');
 
 router.post('/', async (req, res) => {
-  const { messages } = req.body;
-
   try {
+    const messages = req.body.messages;
+
     const response = await axios.post(
-      'https://api.deepseek.com/v1/chat/completions',
+      'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: 'deepseek-chat',
-        messages: messages
+        model: 'mistralai/mistral-7b-instruct', // or try 'openai/gpt-3.5-turbo'
+        messages: messages,
       },
       {
         headers: {
-          'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+          'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-        },
+          'HTTP-Referer': 'https://yourapp.com', // optional, but recommended
+          'X-Title': 'OpashiBot Chat'
+        }
       }
     );
 
-    const reply = response.data.choices?.[0]?.message?.content || "No reply";
-    res.json({ content: reply });
-  } catch (err) {
-    console.error("DeepSeek error:", err.response?.data || err.message);
-    res.status(500).json({ error: err.response?.data || "Unknown error" });
+    res.json(response.data.choices[0].message);
+  } catch (error) {
+    console.error('Error in /chat:', error?.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to get response from AI model.' });
   }
 });
 
