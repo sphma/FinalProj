@@ -43,6 +43,14 @@ app.post('/products', async (req, res) => {
   res.status(201).json(data);
 });
 
+app.delete('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  const { error } = await supabase.from('products').delete().eq('id', id);
+
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(200).json({ message: `Product with id ${id} deleted successfully.` });
+});
+
 app.get('/customers', async (req, res) => {
   const { data, error } = await supabase.from('customers').select('*');
   if (error) return res.status(500).json({ error: error.message });

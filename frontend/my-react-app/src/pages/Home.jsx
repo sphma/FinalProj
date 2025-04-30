@@ -28,6 +28,16 @@ const Home = () => {
     }
   };
 
+  //delete function on cards only when user is authenticated
+  const handleDelete = async (productId) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/products/${productId}`);
+      setProducts(prev => prev.filter(p => p.id !== productId)); 
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+
   // Add to Cart function
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -80,15 +90,24 @@ const Home = () => {
                       {product.Description}
                     </Typography>
                     <Typography variant="h6">${product.Price}</Typography>
-                    {!state.isAuthenticated && (
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      sx={{ mt: 2 }}
-                      onClick={() => addToCart(product)}
-                    >
-                      Add to Cart
-                    </Button>
+                    {!state.isAuthenticated ? (
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          sx={{ mt: 2 }}
+                          onClick={() => addToCart(product)}
+                        >
+                          Add to Cart
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outlined"
+                          color="error"
+                          sx={{ mt: 2 }}
+                          onClick={() => handleDelete(product.id)}
+                        >
+                          Delete
+                        </Button>
                     )}
                   </CardContent>
                 </Card>
