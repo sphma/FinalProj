@@ -34,7 +34,7 @@ const ChatWindow = () => {
   return (
     <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
       <h1>Need Help?</h1>
-      <h2>Chat with OpashiBot</h2>
+      <h2 style={{marginTop:2}}>Chat with OpashiBot</h2>
       <div style={{ border: '1px solid #ccc', padding: 10, height: 300, overflowY: 'auto', backgroundColor: 'white' }}>
         {messages.map((msg, idx) => (
           <div key={idx} style={{ textAlign: msg.role === 'user' ? 'right' : 'left' }}>
