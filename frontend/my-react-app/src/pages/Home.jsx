@@ -78,6 +78,7 @@ const Home = () => {
                       {product.Description}
                     </Typography>
                     <Typography variant="h6">${product.Price}</Typography>
+                    {!isAuthenticated && (
                     <Button
                       variant="outlined"
                       color="secondary"
@@ -86,6 +87,7 @@ const Home = () => {
                     >
                       Add to Cart
                     </Button>
+                    )}
                   </CardContent>
                 </Card>
               </Grid>

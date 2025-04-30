@@ -250,6 +250,7 @@ const Header = () => {
 
           {state.isAuthenticated && (
             <>
+              <a href="/" className="header-link">Listings</a>
               <a href="/orders" className="header-link">Orders</a>
               <a href="/product-management" className="header-link">Product Management</a>
               <a href="/customer-management" className="header-link">Customer Management</a>
