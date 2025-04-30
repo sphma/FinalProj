@@ -9,7 +9,17 @@ const ShoppingCart = () => {
     const { cart, setCart } = useCart();
     const [checkoutOpen, setCheckoutOpen] = useState(false);
 
-    const handleRemove = (id) => setCart(cart.filter(item => item.id !== id));
+    const handleRemove = (id) => {
+        setCart(prevCart =>
+          prevCart
+            .map(item =>
+              item.id === id
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            )
+            .filter(item => item.quantity > 0) // Remove if quantity hits 0
+        );
+      };
     const handleCheckout = () => setCheckoutOpen(true);
     const handleClose = () => setCheckoutOpen(false);
 
