@@ -59,7 +59,7 @@ const ChatWindow = () => {
         }}
       />
       <br />
-      <button onClick={sendMessage} style={{ width: '15%', marginTop: '8px' }}>Send</button>
+      <button onClick={sendMessage} style={{ width: '15%', marginTop: '8px', backgroundColor: '#408dd9' }}>Send</button>
     </div>
   );
 };

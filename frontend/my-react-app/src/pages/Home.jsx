@@ -138,7 +138,8 @@ const Home = () => {
         handleClose={handleSnackbarClose}
         message="Product added to cart!" />
     </Section>
-    <ChatWindow />
+    
+    {!state.isAuthenticated && <ChatWindow />}
     </>
   );
 };
