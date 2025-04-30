@@ -30,6 +30,8 @@ const Home = () => {
 
   //delete function on cards only when user is authenticated
   const handleDelete = async (productId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this listing?");
+    if (!confirmDelete) return;
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/products/${productId}`);
       setProducts(prev => prev.filter(p => p.id !== productId)); 
@@ -106,7 +108,7 @@ const Home = () => {
                           sx={{ mt: 2 }}
                           onClick={() => handleDelete(product.id)}
                         >
-                          Delete
+                          Delete Listing
                         </Button>
                     )}
                   </CardContent>
