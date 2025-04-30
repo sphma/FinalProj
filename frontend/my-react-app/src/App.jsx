@@ -23,8 +23,7 @@ const App = () => {
     <CartProvider>
           <Header />
           <Routes>
-            <Route path="/" element={
-            state.isAuthenticated ? <Navigate to="/orders" replace /> : <Home />} 
+            <Route path="/" element={ <Home />} 
             />
             
             <Route path="/cart" element={<ShoppingCart />} />
