@@ -4,6 +4,7 @@ import { Card, CardContent, CardMedia, Typography, Grid, Button } from '@mui/mat
 import Section from '../components/Section';
 import CartAdded from '../components/CartAdded';
 import ChatWindow from '../components/ChatWindow';
+import { useAuthContext } from '@asgardeo/auth-react';
 import { useCart } from '../context/CartContext';
 import "../style.css";
 
@@ -12,6 +13,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const { cart, setCart } = useCart();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const { signIn, signOut, state } = useAuthContext();
 
   useEffect(() => {
     fetchProducts();
@@ -78,7 +80,7 @@ const Home = () => {
                       {product.Description}
                     </Typography>
                     <Typography variant="h6">${product.Price}</Typography>
-                    {!isAuthenticated && (
+                    {!state.isAuthenticated && (
                     <Button
                       variant="outlined"
                       color="secondary"
